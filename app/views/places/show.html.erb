@@ -1,3 +1,5 @@
+<% if @current_user %>
+
 <h1><%= @place["name"] %></h1>
 
 <h2>My Posts</h2>
@@ -7,9 +9,14 @@
   <p><%= post["description"] %></p>
 <% end %>
 
+
 <p>
   <a href="/posts/new?place_id=<%= @place["id"] %>">New Post</a>
 </p>
+
+<% else %>
+<h3>Please login to view and add new posts</h2>
+<% end %>
 
 <p>
   <a href="/places">Back to All Places</a>

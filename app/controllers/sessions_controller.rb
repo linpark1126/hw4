@@ -7,8 +7,8 @@ class SessionsController < ApplicationController
     if @user
       if BCrypt::Password.new(@user["password"]) == params["password"]
         session["user_id"] = @user["id"]
-        flash["notice"] = "Welcome, #{@user["username"]}."
-        redirect_to "/places"
+        flash["notice"] = "Welcome, #{@user["username"]}"
+        redirect_to "/"
       else
         flash["notice"] = "Unsuccessful login. Check your password again"
         redirect_to "/sessions/new"
@@ -20,6 +20,9 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    flash["notice"] = "Goodbye."
+    session["user_id"] = nil
+    redirect_to "/sessions/new"
   end
 end
   
